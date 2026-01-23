@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+@plugin './hero.ts';
+/* Note: You may need to change the path to fit your project structure */
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --foreground: #ffffff;
+  --background: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* navbar my styles */
+.data-\[justify\=start\]\:basis-0[data-justify='start'] {
+  flex-basis: 0;
+}
+.data-\[justify\=start\]\:flex-grow[data-justify='start'] {
+  flex-grow: 0;
+}
+.max-w-\[1024px\] {
+  max-width: none;
+}
+.react-dadata__input {
+  border: none !important;
+}
+/* date-picker */
+.data-\[editable\=true\]\:text-foreground[data-editable='true'] {
+  color: #0a0a0a !important;
+}
+
+table tbody tr td span {
+  color: #0a0a0a !important;
+}
+.peer-data-\[filled\=true\]\:opacity-70:is(:where(.peer)[data-filled='true'] ~ *) {
+  opacity: 0.7;
+  background-color: #000;
+}

@@ -1,0 +1,156 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid())
+  email    String @unique
+  password String
+  role     ROLE   @default(USER)
+
+  accounts Account[]
+  sessions Session[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Order {
+  id           String   @id @default(uuid())
+  name         String
+  phone        String
+  address      String?
+  orderDate    String
+  nachinka     NACHINKA
+  tort         TORT
+  pricePerUnit Float?
+  price        Price?   @relation(fields: [priceId], references: [id])
+  weight       Float?
+  description  String?
+  status       Boolean  @default(false)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  priceId   String?  @unique
+
+  @@map("orders")
+}
+
+model Price {
+  id         String @id @default(uuid())
+  priceForKg Int
+  order      Order?
+
+  totalAmount Int
+  package     Int
+  cover       Int?
+  fruit       Int?
+  figure      Int?
+  delivery    Int?
+  others      Int?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("prices")
+}
+
+enum ROLE {
+  ADMIN
+  USER
+}
+
+enum NACHINKA {
+  SMETANNIK
+  YOGURT
+  BANAN_BARNY
+  NEJNOST
+  MORKOVNY
+  BANAN
+  NAPOLEON
+  MOLOCHNAY_DEVOCHKA
+  PRAGA
+  SHOKOLAD_S_VISHNEY
+  MAKOVY
+  MALINOVY_LIMON
+  TEMNY_LES
+}
+
+enum TORT {
+  RULET_SNICKERS
+  RULET_MERENGOV
+  TORT_ZIFRA_BUKVA
+  TORT_OT_2500_GR
+  TORT_DO_2500_GR
+  TORT_S_SHOKOLAD_POKRYTIEM
+  BENTO_TORT
+}
+
+// model Recipe {
+//   id          String             @id @default(uuid())
+//   name        String
+//   description String
+//   imageUrl    String?            @map("image_url")
+//   ingredients RecipeIngredient[]
+
+//   @@map("recipes")
+// }
+
+// model RecipeIngredient {
+//   id           String     @id @default(uuid())
+//   recipe       Recipe     @relation(fields: [recipeId], references: [id])
+//   recipeId     String
+//   ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+//   ingredientId String
+//   quantity     Float
+
+//   @@map("recipe_ingredient")
+// }
