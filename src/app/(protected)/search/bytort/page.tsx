@@ -7,7 +7,6 @@ import { useOrderStore } from '@/store/order.store';
 import {
   addToast,
   Button,
-  Selection,
   Pagination,
   Select,
   SelectItem,
@@ -31,7 +30,7 @@ const ByTortPage = () => {
   const { foundOrders, orderCount, findByTort, filteredPrice, resetFoundOrders, isLoading } =
     useOrderStore();
   const { isAuth } = useAuthStore();
-  const [isPendingName, startTransitionName] = useTransition();
+  const [, startTransitionName] = useTransition();
 
   const limit = limitOrders;
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -67,7 +66,7 @@ const ByTortPage = () => {
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debouncedTort]);
+  }, [currentPage, orderCount, debouncedTort, handleSearchByTort, limit, resetFoundOrders]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;

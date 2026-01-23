@@ -8,7 +8,6 @@ import {
   addToast,
   Alert,
   Button,
-  Input,
   Pagination,
   Select,
   SelectItem,
@@ -32,7 +31,7 @@ const ByStatusPage = () => {
   const { foundOrders, orderCount, findByStatus, filteredPrice, resetFoundOrders, isLoading } =
     useOrderStore();
   const { isAuth } = useAuthStore();
-  const [isPendingName, startTransitionName] = useTransition();
+  const [, startTransitionName] = useTransition();
 
   const limit = limitOrders;
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -69,7 +68,7 @@ const ByStatusPage = () => {
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debounced]);
+  }, [currentPage, orderCount, debounced, handleSearchByName, limit, resetFoundOrders]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;

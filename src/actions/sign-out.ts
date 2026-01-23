@@ -11,6 +11,6 @@ export async function signOutFunc() {
 
     return result;
   } catch (error) {
-    console.error('Auth error');
+    console.error(error, 'Auth error');
   }
 }

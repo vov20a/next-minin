@@ -27,7 +27,7 @@ const ByNamePage = () => {
   const [error, setError] = useState<string | null>(null);
   const { foundOrders, orderCount, findByName, resetFoundOrders, isLoading } = useOrderStore();
   const { isAuth } = useAuthStore();
-  const [isPendingName, startTransitionName] = useTransition();
+  const [, startTransitionName] = useTransition();
 
   const limit = limitOrders;
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -63,7 +63,7 @@ const ByNamePage = () => {
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debounced]);
+  }, [currentPage, orderCount, debounced, handleSearchByName, limit, resetFoundOrders]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;
