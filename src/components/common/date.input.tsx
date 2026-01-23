@@ -2,7 +2,7 @@
 
 import { IOrderInit } from '@/types/order';
 import { Input } from '@heroui/input';
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import DateModal from '../UI/modals/date.modal';
 
 interface IProps {

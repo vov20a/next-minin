@@ -57,7 +57,7 @@ export const calcPriceForTort = (
 ): number => {
   let tort: string = '';
   let price: number = 0;
-  for (let obj of TORTS_OPTIONS) {
+  for (const obj of TORTS_OPTIONS) {
     if (obj.value === value) {
       tort = obj.value;
       price = obj.price;

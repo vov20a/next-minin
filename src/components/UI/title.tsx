@@ -9,7 +9,7 @@ const Title = () => {
   const pageTitle = () => {
     let currentMenu = undefined;
 
-    for (let item of navItems) {
+    for (const item of navItems) {
       if (!item.children.length && item.href === pathname) {
         return item.href;
       } else if (item.children.length > 0) {
@@ -21,7 +21,7 @@ const Title = () => {
           currentMenu = item.href + level1.key;
           break;
         } else {
-          for (let son of item.children) {
+          for (const son of item.children) {
             const level2 = son.grandson.find((bit) => pathname === item.href + son.key + bit.pos);
             if (level2?.name) {
               currentMenu = item.href + son.key + level2.pos;

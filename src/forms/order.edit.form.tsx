@@ -14,12 +14,10 @@ import TelephoneInput from '@/components/common/telephone.input';
 import DateInput from '@/components/common/date.input';
 import { IOrderInit } from '@/types/order';
 import AddressInput from '@/components/common/address.input';
-import { usePriceStore } from '@/store/price.store';
 import PriceModal from '@/components/UI/modals/price.modal';
 
 const OrderEditForm = () => {
   const { id } = useParams<{ id: string }>();
-  const { removePrice } = usePriceStore();
   const router = useRouter();
 
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +32,7 @@ const OrderEditForm = () => {
 
   useEffect(() => {
     loadOrder(id);
-  }, [id]);
+  }, [id, loadOrder]);
 
   const initialState: IOrderInit = {} as IOrderInit;
   const [formData, setFormData] = useState(initialState);

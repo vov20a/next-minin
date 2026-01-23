@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ChevronDown from './chevron.down';
 import { Dispatch, SetStateAction } from 'react';
-import { ICurrentMenu, IGrandSons, INavbarProps, IShowGrandSon } from '@/types/menu.types';
+import { IGrandSons, INavbarProps, IShowGrandSon } from '@/types/menu.types';
 import { useAuthStore } from '@/store/auth.store';
 
 interface MainProps extends INavbarProps {
@@ -23,7 +23,7 @@ const MainMenu = ({
 }: MainProps) => {
   const pathname = usePathname();
 
-  const { isAuth, session, status, setAuthState } = useAuthStore();
+  const { isAuth, session } = useAuthStore();
   let filteredItems;
   if (session?.user.role === 'ADMIN') {
     filteredItems = navItems.filter((item) => item);

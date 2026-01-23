@@ -130,7 +130,7 @@ export const useOrderStore = create<OrderState>()(
       try {
         const result = await editOrder(formData, id);
         if (result.success && result.order) {
-          set((state) => ({
+          set(() => ({
             order: result.order,
             totalPrice: result.totalPrice.totalPrice?.pricePerUnit ?? 0,
             isLoading: false,
@@ -171,7 +171,7 @@ export const useOrderStore = create<OrderState>()(
       try {
         const result = await getChangeStatus(id, status);
         if (result.success) {
-          set((state) => ({
+          set(() => ({
             isLoading: false,
           }));
         } else {

@@ -30,7 +30,7 @@ export const usePriceStore = create<PriceState>((set) => ({
     try {
       const result = await createPrice(formData);
       if (result.success) {
-        set((state) => ({
+        set(() => ({
           //   orders: [...state.orders, result.order],
           price: result.price,
           isLoading: false,
@@ -50,7 +50,7 @@ export const usePriceStore = create<PriceState>((set) => ({
     try {
       const result = await editPrice(formData, id);
       if (result.success && result.price) {
-        set((state) => ({
+        set(() => ({
           price: result.price,
           isLoading: false,
         }));
@@ -70,7 +70,7 @@ export const usePriceStore = create<PriceState>((set) => ({
       const result = await deletePrice(id);
 
       if (result.success) {
-        set((state) => ({
+        set(() => ({
           // orders: state.orders.filter((order) => order.id !== id),
           isLoading: false,
           // orderCount: result.orderCount,

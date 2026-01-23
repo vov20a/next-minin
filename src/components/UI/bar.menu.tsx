@@ -18,7 +18,7 @@ interface BarProps {
 const BarMenu = ({ setIsMenuOpen, isShowGrandsons, setShowgrandsons, showGrandson }: BarProps) => {
   const pathname = usePathname();
 
-  const { isAuth, session, status, setAuthState } = useAuthStore();
+  const { isAuth } = useAuthStore();
   const filteredItems = navItems.filter((item) => {
     if (item.href === '/create' || item.href === '/orders' || item.href === '/search') {
       return isAuth;

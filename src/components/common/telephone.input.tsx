@@ -3,7 +3,6 @@
 import React, { useEffect } from 'react';
 import { Input } from '@heroui/react';
 import { usePathname } from 'next/navigation';
-import { IOrderInit } from '@/types/order';
 
 interface IProps {
   setFormData: (phone: string) => void;
@@ -25,13 +24,13 @@ const TelephoneInput: React.FC<IProps> = ({ initValue, setFormData }) => {
       setValue(v === null ? '' : v[0]);
 
       const regExp = /^(\d{3})(\d{3})(\d{2})(\d{2})$/g;
-      let result = regExp.exec(val);
+      const result = regExp.exec(val);
       if (result) {
         setMask(`+7(${result[1]}) ${result[2]}-${result[3]}-${result[4]}`);
       }
     } else {
       const regExp = /^\+?7?\s?\(?\d{3}\)?\s?\d{3}[- ]?\d{2}[- ]?\d{2}$/g;
-      let result = regExp.exec(val);
+      const result = regExp.exec(val);
 
       if (result) {
         setMask(result[0]);
@@ -56,7 +55,7 @@ const TelephoneInput: React.FC<IProps> = ({ initValue, setFormData }) => {
     if (initValue !== undefined && pathname.includes('/edit')) {
       setValue(initValue);
     }
-  }, [initValue]);
+  }, [initValue, pathname]);
 
   return (
     <Input

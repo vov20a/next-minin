@@ -1,6 +1,5 @@
 'use client';
 
-import SearchPage from '@/app/(protected)/search/byname/page';
 import { limitOrders } from '@/config/pagesContent';
 import { getNachinkyLabel, getTortsLabel } from '@/constants/select-options';
 import { useAuthStore } from '@/store/auth.store';
@@ -71,7 +70,7 @@ const OrdersTable = () => {
       ordersCount();
     }
     isMounted.current = true;
-  }, [currentPage, ordersCnt]);
+  }, [currentPage, ordersCnt, countPage]);
 
   const handleChangeStatus = async (id: string, status: boolean) => {
     startTransition(async () => {

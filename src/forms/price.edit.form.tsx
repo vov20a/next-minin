@@ -12,7 +12,7 @@ interface IProps {
   oldPrice: IPrice;
   weight: number | undefined;
 }
-let initialState: IPriceInit = {
+const initialState: IPriceInit = {
   totalAmount: null,
   priceForKg: null,
   weight: null,
@@ -99,7 +99,20 @@ const PriceEditForm = ({
         setIsDelivery(false);
       }
     }
-  }, [formData]);
+  }, [
+    formData,
+    oldPrice.cover,
+    ,
+    oldPrice.delivery,
+    oldPrice.figure,
+    oldPrice.fruit,
+    oldPrice.others,
+    oldPrice.package,
+    oldPrice.totalAmount,
+    priceForTort,
+    setIsDelivery,
+    weight,
+  ]);
   return (
     <Form className="w-full " action={handleSubmit}>
       {error && <p className="text-red-500 mb-4">{error}</p>}

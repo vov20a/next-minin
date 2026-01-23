@@ -57,7 +57,7 @@ const OrderSingle = () => {
 
   useEffect(() => {
     loadOrder(id);
-  }, [id]);
+  }, [id, loadOrder]);
 
   return !isLoading && isAuth ? (
     <>

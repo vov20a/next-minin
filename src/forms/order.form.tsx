@@ -349,6 +349,3 @@ const OrderForm = () => {
 };
 
 export default OrderForm;
-function removePrice(id: string) {
-  throw new Error('Function not implemented.');
-}

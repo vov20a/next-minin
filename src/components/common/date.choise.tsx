@@ -8,7 +8,6 @@ import {
   CalendarDate,
   CalendarDateTime,
   ZonedDateTime,
-  parseDateTime,
 } from '@internationalized/date';
 import { useDateFormatter } from '@react-aria/i18n';
 
@@ -19,7 +18,7 @@ interface IProps {
 const DateChoise = ({ setFormData }: IProps) => {
   const [value, setValue] = useState<DateValue | null>(now(getLocalTimeZone()));
 
-  let formatter = useDateFormatter({ dateStyle: 'full' });
+  const formatter = useDateFormatter({ dateStyle: 'full' });
 
   const onChangeDate = (date: CalendarDate | CalendarDateTime | ZonedDateTime | null) => {
     setValue(date);
@@ -28,7 +27,7 @@ const DateChoise = ({ setFormData }: IProps) => {
       const day = formatter.format(date?.toDate()).split(',')[0].slice(0, 3);
 
       const regExp = /\d{2}$/g;
-      let year = regExp.exec(date.year.toString());
+      const year = regExp.exec(date.year.toString());
       setFormData(
         `${date.day < 10 ? '0' + date.day : date.day}/${
           date.month < 10 ? '0' + date.month : date.month

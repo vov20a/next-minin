@@ -12,7 +12,7 @@ interface IProps {
   setIsPriceOpen: Dispatch<SetStateAction<boolean>>;
   setPriceId: (value: string) => void;
 }
-let initialState: IPriceInit = {
+const initialState: IPriceInit = {
   totalAmount: null,
   priceForKg: null,
   weight: null,
@@ -86,7 +86,7 @@ const PriceForm = ({
         setIsDelivery(false);
       }
     }
-  }, [formData]);
+  }, [formData, priceForTort, setIsDelivery]);
   // console.log(priceForTort);
   return (
     <Form className="w-full " action={handleSubmit}>
