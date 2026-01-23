@@ -18,7 +18,7 @@ import {
   TableRow,
 } from '@heroui/react';
 import Link from 'next/link';
-import React, { useCallback, useEffect, useState, useTransition } from 'react';
+import React, { useEffect, useState, useTransition } from 'react';
 import SearchIcon from '@/components/UI/searchIcon';
 import { useDebounce } from '@/hooks/useDebounce';
 

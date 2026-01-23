@@ -20,7 +20,7 @@ import {
   TableRow,
 } from '@heroui/react';
 import Link from 'next/link';
-import React, { useCallback, useEffect, useState, useTransition } from 'react';
+import React, { useEffect, useState, useTransition } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
 
 const StatusArr: ('Выполнено' | 'В работе')[] = ['Выполнено', 'В работе'];
