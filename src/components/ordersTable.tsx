@@ -70,7 +70,19 @@ const OrdersTable = () => {
       ordersCount();
     }
     isMounted.current = true;
-  }, [currentPage, ordersCnt, countPage]);
+  }, [
+    currentPage,
+    ordersCnt,
+    countPage,
+    createQueryString,
+    limit,
+    loadOrders,
+    orders.length,
+    ordersCount,
+    pathname,
+    router,
+    searchParams,
+  ]);
 
   const handleChangeStatus = async (id: string, status: boolean) => {
     startTransition(async () => {

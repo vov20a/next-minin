@@ -66,7 +66,7 @@ const ByTortPage = () => {
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debouncedTort, handleSearchByTort, limit, resetFoundOrders]);
+  }, [currentPage, orderCount, debouncedTort, limit, resetFoundOrders]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;

@@ -18,7 +18,7 @@ import {
   TableRow,
 } from '@heroui/react';
 import Link from 'next/link';
-import React, { useEffect, useState, useTransition } from 'react';
+import React, { useCallback, useEffect, useState, useTransition } from 'react';
 import SearchIcon from '@/components/UI/searchIcon';
 import { useDebounce } from '@/hooks/useDebounce';
 
@@ -63,7 +63,7 @@ const ByNamePage = () => {
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debounced, handleSearchByName, limit, resetFoundOrders]);
+  }, [currentPage, orderCount, debounced, limit, resetFoundOrders]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;
