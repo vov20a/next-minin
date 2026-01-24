@@ -102,14 +102,13 @@ const PriceEditForm = ({
   }, [
     formData,
     oldPrice.cover,
-    ,
     oldPrice.delivery,
     oldPrice.figure,
     oldPrice.fruit,
     oldPrice.others,
     oldPrice.package,
     oldPrice.totalAmount,
-    priceForTort,
+    // priceForTort,
     setIsDelivery,
     weight,
   ]);

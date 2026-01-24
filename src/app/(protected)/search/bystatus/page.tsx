@@ -20,7 +20,7 @@ import {
   TableRow,
 } from '@heroui/react';
 import Link from 'next/link';
-import React, { useEffect, useState, useTransition } from 'react';
+import React, { useCallback, useEffect, useState, useTransition } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
 
 const StatusArr: ('Выполнено' | 'В работе')[] = ['Выполнено', 'В работе'];
@@ -40,7 +40,7 @@ const ByStatusPage = () => {
   const debounced = useDebounce(status, 500);
   const statusBoolean = debounced === 'В работе' ? false : true;
 
-  const handleSearchByName = async () => {
+  const handleSearchByName = useCallback(async () => {
     startTransitionName(async () => {
       if (debounced?.length > 2) {
         findByStatus(statusBoolean, currentPage);
@@ -56,7 +56,7 @@ const ByStatusPage = () => {
         setCountPage(Math.ceil(orderCount / limit));
       }
     });
-  };
+  }, [debounced, currentPage]);
 
   useEffect(() => {
     if (currentPage > 1 && orderCount < limit * (currentPage - 1)) {
@@ -68,7 +68,7 @@ const ByStatusPage = () => {
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debounced, limit, resetFoundOrders]);
+  }, [currentPage, orderCount, debounced, limit, handleSearchByName, resetFoundOrders]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;

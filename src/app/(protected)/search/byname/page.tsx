@@ -18,7 +18,7 @@ import {
   TableRow,
 } from '@heroui/react';
 import Link from 'next/link';
-import React, { useEffect, useState, useTransition } from 'react';
+import React, { useCallback, useEffect, useState, useTransition } from 'react';
 import SearchIcon from '@/components/UI/searchIcon';
 import { useDebounce } from '@/hooks/useDebounce';
 
@@ -35,7 +35,7 @@ const ByNamePage = () => {
 
   const debounced = useDebounce(search, 500);
 
-  const handleSearchByName = async () => {
+  const handleSearchByName = useCallback(async () => {
     startTransitionName(async () => {
       if (debounced?.length > 2) {
         findByName(debounced, currentPage);
@@ -51,7 +51,7 @@ const ByNamePage = () => {
         setCountPage(Math.ceil(orderCount / limit));
       }
     });
-  };
+  }, [debounced, currentPage]);
 
   useEffect(() => {
     if (currentPage > 1 && orderCount < limit * (currentPage - 1)) {
@@ -63,7 +63,7 @@ const ByNamePage = () => {
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debounced, limit, resetFoundOrders]);
+  }, [currentPage, orderCount, debounced, limit, handleSearchByName, resetFoundOrders]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;

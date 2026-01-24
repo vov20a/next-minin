@@ -20,7 +20,7 @@ import {
   Alert,
 } from '@heroui/react';
 import Link from 'next/link';
-import React, { useEffect, useState, useTransition } from 'react';
+import React, { useCallback, useEffect, useState, useTransition } from 'react';
 import { useDebounceTort } from '@/hooks/useDebounce';
 import { TORT } from '@/generated/prisma';
 
@@ -38,7 +38,7 @@ const ByTortPage = () => {
 
   const debouncedTort = useDebounceTort(tort ?? undefined, 500);
 
-  const handleSearchByTort = async () => {
+  const handleSearchByTort = useCallback(async () => {
     startTransitionName(async () => {
       if (debouncedTort && debouncedTort.length > 5) {
         findByTort(debouncedTort, currentPage);
@@ -54,7 +54,7 @@ const ByTortPage = () => {
         setCountPage(Math.ceil(orderCount / limit));
       }
     });
-  };
+  }, [debouncedTort, currentPage]);
 
   useEffect(() => {
     if (currentPage > 1 && orderCount < limit * (currentPage - 1)) {
@@ -66,7 +66,7 @@ const ByTortPage = () => {
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debouncedTort, limit, resetFoundOrders]);
+  }, [currentPage, orderCount, debouncedTort, limit, handleSearchByTort, resetFoundOrders]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;

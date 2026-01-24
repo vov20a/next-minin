@@ -86,7 +86,7 @@ const PriceForm = ({
         setIsDelivery(false);
       }
     }
-  }, [formData, priceForTort, setIsDelivery]);
+  }, [formData, setIsDelivery]);
   // console.log(priceForTort);
   return (
     <Form className="w-full " action={handleSubmit}>
