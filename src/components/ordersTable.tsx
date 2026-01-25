@@ -51,20 +51,19 @@ const OrdersTable = () => {
 
   useEffect(() => {
     if (isMounted.current) {
-      if (currentPage > 1 && currentPage === countPage && orders.length === 0) {
-        setCurrentPage(countPage - 1);
-        loadOrders(countPage - 1);
-      } else {
-        loadOrders(currentPage);
-      }
+      // if (currentPage > 1 && currentPage === countPage && orders.length === 0) {
+      //   setCurrentPage(countPage - 1);
+      //   loadOrders(countPage - 1);
+      // } else {
+      loadOrders(currentPage);
+      // }
 
       setCountPage(Math.ceil(ordersCnt / limit));
 
       router.push(
         pathname +
           '?' +
-          // `${currentPage > 1 ? createQueryString('page', currentPage.toString()) : ''}`,
-          createQueryString('page', currentPage.toString()),
+          `${currentPage > 1 ? createQueryString('page', currentPage.toString()) : ''}`,
       );
     } else if (!isMounted.current) {
       setCurrentPage(Number(searchParams.get('page')) !== 0 ? Number(searchParams.get('page')) : 1);
