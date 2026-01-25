@@ -40,7 +40,7 @@ const ByStatusPage = () => {
   const debounced = useDebounce(status, 500);
   const statusBoolean = debounced === 'В работе' ? false : true;
 
-  const handleSearchByName = useCallback(async () => {
+  const handleSearchByStatus = useCallback(async () => {
     startTransitionName(async () => {
       if (debounced?.length > 2) {
         findByStatus(statusBoolean, currentPage);
@@ -56,19 +56,27 @@ const ByStatusPage = () => {
         setCountPage(Math.ceil(orderCount / limit));
       }
     });
-  }, [debounced, currentPage]);
+  }, [debounced, currentPage, orderCount, findByStatus, limit]);
 
   useEffect(() => {
     if (currentPage > 1 && orderCount < limit * (currentPage - 1)) {
       setCurrentPage(1);
     }
     if (debounced?.length > 2) {
-      handleSearchByName();
+      handleSearchByStatus();
     }
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debounced, limit, handleSearchByName, resetFoundOrders]);
+  }, [
+    currentPage,
+    countPage,
+    orderCount,
+    debounced,
+    limit,
+    handleSearchByStatus,
+    resetFoundOrders,
+  ]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;

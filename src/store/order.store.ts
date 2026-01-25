@@ -245,12 +245,7 @@ export const useOrderStore = create<OrderState>()(
         set({ error: 'Ошибка при поиске по торту', isLoading: false, foundOrders: [] });
       }
     },
-    resetFoundOrders: async () => {
-      set({
-        foundOrders: [],
-        filteredPrice: 0,
-      });
-    },
+
     findByOrderDate: async (orderDate, page: number) => {
       set({ isLoading: true, error: null, foundOrders: [], filteredPrice: 0, page });
 
@@ -272,7 +267,12 @@ export const useOrderStore = create<OrderState>()(
         set({ error: 'Ошибка при поиске по дате', isLoading: false, foundOrders: [] });
       }
     },
-
+    resetFoundOrders: async () => {
+      set({
+        foundOrders: [],
+        filteredPrice: 0,
+      });
+    },
     findTotalPrice: async () => {
       set({ isLoading: true, error: null });
       try {

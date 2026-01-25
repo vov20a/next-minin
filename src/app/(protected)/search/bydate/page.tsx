@@ -37,7 +37,7 @@ const ByDatePage = () => {
 
   const debounced = useDebounce(search, 800);
 
-  const handleSearchByName = useCallback(async () => {
+  const handleSearchByDate = useCallback(async () => {
     startTransitionName(async () => {
       if (debounced?.length > 2) {
         findByOrderDate(debounced, currentPage);
@@ -53,19 +53,19 @@ const ByDatePage = () => {
         setCountPage(Math.ceil(orderCount / limit));
       }
     });
-  }, [debounced, currentPage]);
+  }, [debounced, currentPage, orderCount, findByOrderDate, limit]);
 
   useEffect(() => {
     if (currentPage > 1 && orderCount < limit * (currentPage - 1)) {
       setCurrentPage(1);
     }
     if (debounced?.length > 2) {
-      handleSearchByName();
+      handleSearchByDate();
     }
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debounced, limit, handleSearchByName, resetFoundOrders]);
+  }, [currentPage, countPage, orderCount, debounced, limit, handleSearchByDate, resetFoundOrders]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;

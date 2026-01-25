@@ -54,7 +54,7 @@ const ByTortPage = () => {
         setCountPage(Math.ceil(orderCount / limit));
       }
     });
-  }, [debouncedTort, currentPage]);
+  }, [debouncedTort, currentPage, orderCount, findByTort, limit]);
 
   useEffect(() => {
     if (currentPage > 1 && orderCount < limit * (currentPage - 1)) {
@@ -66,7 +66,15 @@ const ByTortPage = () => {
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debouncedTort, limit, handleSearchByTort, resetFoundOrders]);
+  }, [
+    currentPage,
+    countPage,
+    orderCount,
+    debouncedTort,
+    limit,
+    handleSearchByTort,
+    resetFoundOrders,
+  ]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;

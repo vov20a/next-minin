@@ -51,7 +51,7 @@ const ByNamePage = () => {
         setCountPage(Math.ceil(orderCount / limit));
       }
     });
-  }, [debounced, currentPage]);
+  }, [debounced, currentPage, orderCount, findByName, limit]);
 
   useEffect(() => {
     if (currentPage > 1 && orderCount < limit * (currentPage - 1)) {
@@ -63,7 +63,7 @@ const ByNamePage = () => {
     return () => {
       resetFoundOrders();
     };
-  }, [currentPage, orderCount, debounced, limit, handleSearchByName, resetFoundOrders]);
+  }, [currentPage, countPage, orderCount, debounced, limit, handleSearchByName, resetFoundOrders]);
 
   if (!isAuth) {
     return <p className="text-white">Не авторизован</p>;
