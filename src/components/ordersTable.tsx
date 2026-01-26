@@ -51,13 +51,7 @@ const OrdersTable = () => {
 
   useEffect(() => {
     if (isMounted.current) {
-      // if (currentPage > 1 && currentPage === countPage && orders.length === 0) {
-      //   setCurrentPage(countPage - 1);
-      //   loadOrders(countPage - 1);
-      // } else {
       loadOrders(currentPage);
-      // }
-
       setCountPage(Math.ceil(ordersCnt / limit));
 
       router.push(
@@ -72,6 +66,7 @@ const OrdersTable = () => {
     }
     isMounted.current = true;
   }, [
+    isMounted.current,
     currentPage,
     ordersCnt,
     countPage,
