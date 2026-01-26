@@ -63,7 +63,8 @@ const OrdersTable = () => {
       router.push(
         pathname +
           '?' +
-          `${currentPage > 1 ? createQueryString('page', currentPage.toString()) : ''}`,
+          // `${currentPage > 1 ? createQueryString('page', currentPage.toString()) : ''}`,
+          createQueryString('page', currentPage.toString()),
       );
     } else if (!isMounted.current) {
       setCurrentPage(Number(searchParams.get('page')) !== 0 ? Number(searchParams.get('page')) : 1);
