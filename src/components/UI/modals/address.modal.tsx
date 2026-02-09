@@ -14,7 +14,7 @@ const AddressModal = ({ setFormData, isOpen, onClose }: IProps) => {
     <CustomModal
       isOpen={isOpen}
       onClose={onClose}
-      minHeight="min-h-[600px]"
+      minHeight="min-h-[600px] max-sm:min-h-[400px] max-sm:mt-[-150px]"
       title="Address modal"
       size="2xl"
       showFooter={true}

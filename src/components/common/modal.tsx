@@ -35,7 +35,7 @@ export default function CustomModal({
     >
       <ModalContent>
         <ModalHeader className="border-b">
-          <h3 className="text-xl text-background font-semibold">{title}</h3>
+          <h3 className="text-xl text-background font-semibold max-sm:text-[14px]">{title}</h3>
         </ModalHeader>
         <ModalBody className="space-y-4 py-6">{children}</ModalBody>
         {showFooter && (

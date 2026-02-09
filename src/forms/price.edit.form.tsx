@@ -115,224 +115,243 @@ const PriceEditForm = ({
   return (
     <Form className="w-full " action={handleSubmit}>
       {error && <p className="text-red-500 mb-4">{error}</p>}
-      <div className="w-full max-sm:max-h-[50px]">
-        <Input
-          isRequired
-          name="weight"
-          label="Вес"
-          type="number"
-          value={formData.weight !== null ? formData.weight.toString() : ''}
-          classNames={{
-            inputWrapper: 'bg-default-100',
-            input: 'text-sm focus:outline-none',
-          }}
-          onChange={(e) => {
-            setFormData({ ...formData, weight: parseFloat(e.target.value) });
-          }}
-          endContent={
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
-              Гр
-            </span>
-          }
-          validate={(value) => {
-            if (!value) return 'Вес обязательно';
-            const num = parseFloat(value);
-            if (isNaN(num) || num < 0) return 'Вес должна быть положительный';
-            return null;
-          }}
-        />
-      </div>
-      <div className="w-full max-sm:max-h-[50px]">
-        <Input
-          isRequired
-          readOnly
-          name="priceForKg"
-          label="Цена за 1кг"
-          type="number"
-          value={formData.priceForKg !== null ? formData.priceForKg.toString() : ''}
-          classNames={{
-            inputWrapper: 'bg-default-100',
-            input: 'text-sm focus:outline-none',
-          }}
-          endContent={
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
-              ₽
-            </span>
-          }
-          validate={(value) => {
-            if (!value) return 'Цена обязательно';
-            const num = parseFloat(value);
-            if (isNaN(num) || num < 0) return 'Цена должна быть положительной';
-            return null;
-          }}
-        />
-      </div>
-      <div className="w-full max-sm:max-h-[50px]">
-        <Input
-          label="Упаковка"
-          isRequired
-          name="package"
-          type="number"
-          value={
-            formData.package !== null && formData.package !== 0 ? formData.package.toString() : ''
-          }
-          classNames={{
-            inputWrapper: 'bg-default-100',
-            input: 'text-sm focus:outline-none',
-          }}
-          onChange={(e) => {
-            setFormData({ ...formData, package: parseFloat(e.target.value) });
-          }}
-          endContent={
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
-              ₽
-            </span>
-          }
-          validate={(value) => {
-            if (!value) return 'Упаковка обязательно';
-            const num = parseFloat(value);
-            if (isNaN(num) || num < 0) return 'Упаковка обязательно';
-            return null;
-          }}
-        />
-      </div>
-      <div className="w-full max-sm:max-h-[50px]">
-        <Input
-          label="Покрытие (необязательно)"
-          name="cover"
-          type="number"
-          value={formData.cover !== null ? formData.cover.toString() : ''}
-          classNames={{
-            inputWrapper: 'bg-default-100',
-            input: 'text-sm focus:outline-none',
-          }}
-          onChange={(e) => {
-            setFormData({ ...formData, cover: parseFloat(e.target.value) });
-          }}
-          endContent={
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
-              ₽
-            </span>
-          }
-        />
-      </div>
-      <div className="w-full max-sm:max-h-[50px]">
-        <Input
-          name="fruit"
-          label="Фрукты (необязательно)"
-          type="number"
-          value={formData.fruit !== null ? formData.fruit.toString() : ''}
-          classNames={{
-            inputWrapper: 'bg-default-100',
-            input: 'text-sm focus:outline-none',
-          }}
-          onChange={(e) => {
-            setFormData({ ...formData, fruit: parseFloat(e.target.value) });
-          }}
-          endContent={
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
-              ₽
-            </span>
-          }
-        />
-      </div>
-      <div className="w-full max-sm:max-h-[50px]">
-        <Input
-          name="figure"
-          label="Фигурки (необязательно)"
-          type="number"
-          value={formData.figure !== null ? formData.figure.toString() : ''}
-          classNames={{
-            inputWrapper: 'bg-default-100',
-            input: 'text-sm focus:outline-none',
-          }}
-          onChange={(e) => {
-            setFormData({ ...formData, figure: parseFloat(e.target.value) });
-          }}
-          endContent={
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
-              ₽
-            </span>
-          }
-        />
-      </div>
-      <div className="w-full max-sm:max-h-[50px]">
-        <Input
-          name="delivery"
-          label="Доставка (необязательно)"
-          type="number"
-          value={formData.delivery !== null ? formData.delivery.toString() : ''}
-          classNames={{
-            inputWrapper: 'bg-default-100',
-            input: 'text-sm focus:outline-none',
-          }}
-          onChange={(e) => {
-            setFormData({ ...formData, delivery: parseFloat(e.target.value) });
-          }}
-          endContent={
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
-              ₽
-            </span>
-          }
-        />
-      </div>
-      <div className="w-full max-sm:max-h-[50px]">
-        <Input
-          name="others"
-          label="Другие расходы (необязательно)"
-          type="number"
-          value={formData.others !== null ? formData.others.toString() : ''}
-          classNames={{
-            inputWrapper: 'bg-default-100',
-            input: 'text-sm focus:outline-none',
-          }}
-          onChange={(e) => {
-            setFormData({ ...formData, others: parseFloat(e.target.value) });
-          }}
-          endContent={
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
-              ₽
-            </span>
-          }
-        />
-      </div>
-      <div className="w-full flex justify-between gap-30  max-sm:gap-10">
-        <Input
-          isRequired
-          name="totalAmount"
-          label="Итого"
-          type="number"
-          value={amount !== null ? amount.toString() : ''}
-          className="max-sm:min-w-1/3"
-          classNames={{
-            inputWrapper: 'bg-default-100',
-            input: 'text-sm focus:outline-none',
-          }}
-          endContent={
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
-              ₽
-            </span>
-          }
-          validate={(value) => {
-            if (!value) return 'Итого обязательно';
-            const num = parseFloat(value);
-            if (isNaN(num) || num < 0) return 'Цена должна быть положительный';
-            return null;
-          }}
-        />
-        <Button
-          className="mt-2 px-4"
-          color="primary"
-          type="submit"
-          isLoading={isPending}
-          onPress={() => {
-            setFormData({ ...formData, totalAmount: amount });
-            const weightOrder = formData.weight !== null ? formData.weight : 0;
-            setFormDataOrder(weightOrder, amount !== null ? amount : 0);
-          }}
-        >
-          Сохранить
-        </Button>
+      <div className="flex flex-nowrap w-full">
+        <div className="w-1/2 px-3  max-sm:px-1">
+          <div className="w-full pb-1">
+            <Input
+              isRequired
+              name="weight"
+              label="Вес"
+              type="number"
+              value={formData.weight !== null ? formData.weight.toString() : ''}
+              classNames={{
+                inputWrapper: 'bg-default-100',
+                input: 'text-sm focus:outline-none',
+                label: 'max-sm:text-[10px] max-sm:leading-tight',
+              }}
+              onChange={(e) => {
+                setFormData({ ...formData, weight: parseFloat(e.target.value) });
+              }}
+              endContent={
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
+                  Гр
+                </span>
+              }
+              validate={(value) => {
+                if (!value) return 'Вес обязательно';
+                const num = parseFloat(value);
+                if (isNaN(num) || num < 0) return 'Вес должна быть положительный';
+                return null;
+              }}
+            />
+          </div>
+          <div className="w-full pb-1">
+            <Input
+              isRequired
+              readOnly
+              name="priceForKg"
+              label="Цена за 1кг"
+              type="number"
+              value={formData.priceForKg !== null ? formData.priceForKg.toString() : ''}
+              classNames={{
+                inputWrapper: 'bg-default-100',
+                input: 'text-sm focus:outline-none',
+                label: 'max-sm:text-[10px] max-sm:leading-tight',
+              }}
+              endContent={
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
+                  ₽
+                </span>
+              }
+              validate={(value) => {
+                if (!value) return 'Цена обязательно';
+                const num = parseFloat(value);
+                if (isNaN(num) || num < 0) return 'Цена должна быть положительной';
+                return null;
+              }}
+            />
+          </div>
+          <div className="w-full pb-1">
+            <Input
+              label="Упаковка"
+              isRequired
+              name="package"
+              type="number"
+              value={
+                formData.package !== null && formData.package !== 0
+                  ? formData.package.toString()
+                  : ''
+              }
+              classNames={{
+                inputWrapper: 'bg-default-100',
+                input: 'text-sm focus:outline-none',
+                label: 'max-sm:text-[10px] max-sm:leading-tight',
+              }}
+              onChange={(e) => {
+                setFormData({ ...formData, package: parseFloat(e.target.value) });
+              }}
+              endContent={
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
+                  ₽
+                </span>
+              }
+              validate={(value) => {
+                if (!value) return 'Упаковка обязательно';
+                const num = parseFloat(value);
+                if (isNaN(num) || num < 0) return 'Упаковка обязательно';
+                return null;
+              }}
+            />
+          </div>
+          <div className="w-full pb-1">
+            <Input
+              label="Покрытие (необязательно)"
+              name="cover"
+              type="number"
+              value={formData.cover !== null ? formData.cover.toString() : ''}
+              classNames={{
+                inputWrapper: 'bg-default-100',
+                input: 'text-sm focus:outline-none',
+                label: 'max-sm:text-[10px] max-sm:leading-tight',
+              }}
+              onChange={(e) => {
+                setFormData({ ...formData, cover: parseFloat(e.target.value) });
+              }}
+              endContent={
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
+                  ₽
+                </span>
+              }
+            />
+          </div>
+          <div className="w-full pb-1">
+            <Input
+              name="fruit"
+              label="Фрукты (необязательно)"
+              type="number"
+              value={formData.fruit !== null ? formData.fruit.toString() : ''}
+              classNames={{
+                inputWrapper: 'bg-default-100',
+                input: 'text-sm focus:outline-none',
+                label: 'max-sm:text-[10px] max-sm:leading-tight',
+              }}
+              onChange={(e) => {
+                setFormData({ ...formData, fruit: parseFloat(e.target.value) });
+              }}
+              endContent={
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
+                  ₽
+                </span>
+              }
+            />
+          </div>
+        </div>
+        <div className="w-1/2 px-3  max-sm:px-1">
+          <div className="w-full pb-1">
+            <Input
+              name="figure"
+              label="Фигурки (необязательно)"
+              type="number"
+              value={formData.figure !== null ? formData.figure.toString() : ''}
+              classNames={{
+                inputWrapper: 'bg-default-100',
+                input: 'text-sm focus:outline-none',
+                label: 'max-sm:text-[10px] max-sm:leading-tight',
+              }}
+              onChange={(e) => {
+                setFormData({ ...formData, figure: parseFloat(e.target.value) });
+              }}
+              endContent={
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
+                  ₽
+                </span>
+              }
+            />
+          </div>
+          <div className="w-full pb-1">
+            <Input
+              name="delivery"
+              label="Доставка (необязательно)"
+              type="number"
+              value={formData.delivery !== null ? formData.delivery.toString() : ''}
+              classNames={{
+                inputWrapper: 'bg-default-100',
+                input: 'text-sm focus:outline-none',
+                label: 'max-sm:text-[10px] max-sm:leading-tight',
+              }}
+              onChange={(e) => {
+                setFormData({ ...formData, delivery: parseFloat(e.target.value) });
+              }}
+              endContent={
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
+                  ₽
+                </span>
+              }
+            />
+          </div>
+          <div className="w-full pb-1">
+            <Input
+              name="others"
+              label="Другие расходы (необязательно)"
+              type="number"
+              value={formData.others !== null ? formData.others.toString() : ''}
+              classNames={{
+                inputWrapper: 'bg-default-100',
+                input: 'text-sm focus:outline-none',
+                label: 'max-sm:text-[10px] max-sm:leading-tight',
+              }}
+              onChange={(e) => {
+                setFormData({ ...formData, others: parseFloat(e.target.value) });
+              }}
+              endContent={
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
+                  ₽
+                </span>
+              }
+            />
+          </div>
+          <div className="w-full pb-1">
+            <Input
+              isRequired
+              name="totalAmount"
+              label="Итого"
+              type="number"
+              value={amount !== null ? amount.toString() : ''}
+              className="max-sm:min-w-1/3"
+              classNames={{
+                inputWrapper: 'bg-default-100',
+                input: 'text-sm focus:outline-none',
+                label: 'max-sm:text-[10px] max-sm:leading-tight',
+              }}
+              endContent={
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-default-500 pointer-events-none">
+                  ₽
+                </span>
+              }
+              validate={(value) => {
+                if (!value) return 'Итого обязательно';
+                const num = parseFloat(value);
+                if (isNaN(num) || num < 0) return 'Цена должна быть положительный';
+                return null;
+              }}
+            />
+          </div>
+          <div className="w-full pb-1">
+            <Button
+              className="mt-2 px-4"
+              color="primary"
+              type="submit"
+              isLoading={isPending}
+              onPress={() => {
+                setFormData({ ...formData, totalAmount: amount });
+                const weightOrder = formData.weight !== null ? formData.weight : 0;
+                setFormDataOrder(weightOrder, amount !== null ? amount : 0);
+              }}
+            >
+              Сохранить
+            </Button>
+          </div>
+        </div>
       </div>
     </Form>
   );

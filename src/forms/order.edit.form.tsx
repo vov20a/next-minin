@@ -79,7 +79,7 @@ const OrderEditForm = () => {
 
   return (
     <>
-      <p className=" mb-4">Редактирование заказа: {id}</p>
+      <p className=" mb-4">Редактирование заказа: {oldOrder.name}</p>
       <Form className="w-full " action={handleSubmit}>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <div className="flex flex-col w-[20%]">

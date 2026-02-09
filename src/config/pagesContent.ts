@@ -39,4 +39,4 @@ export const pagesContent = {
       `,
   },
 };
-export const limitOrders = 3;
+export const limitOrders = 5;
