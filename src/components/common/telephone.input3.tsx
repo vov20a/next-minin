@@ -16,7 +16,7 @@ const TelephoneInput: React.FC<IProps> = ({ initValue, setFormData }) => {
   const posArr: number[] = [3, 4, 5, 8, 9, 10, 12, 13, 15, 16];
   const [currentPos, setCurrentPos] = useState(0);
   const [mask, setMask] = useState('+7(');
-  const [result, setResult] = useState<RegExpExecArray | null>([] as unknown as RegExpExecArray);
+  const [, setResult] = useState<RegExpExecArray | null>([] as unknown as RegExpExecArray);
 
   const handleFocus = () => {
     setValue(mask);
