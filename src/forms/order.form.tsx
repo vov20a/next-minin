@@ -9,7 +9,7 @@ import {
 import { useOrderStore } from '@/store/order.store';
 import { addToast, Button, Checkbox, Form, Input, Select, SelectItem } from '@heroui/react';
 import { useState, useTransition } from 'react';
-import TelephoneInput from '@/components/common/telephone.input';
+import TelephoneInput from '@/components/common/telephone.input3';
 import DateInput from '@/components/common/date.input';
 import { IOrderInit } from '@/types/order';
 import AddressInput from '@/components/common/address.input';
